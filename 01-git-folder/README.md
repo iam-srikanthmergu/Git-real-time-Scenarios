@@ -416,6 +416,24 @@ However, commit objects still existed inside Git's object database.
 
 Using the commit SHA, we recreated the branch and recovered nearly two weeks of development effort.
 
+## step1: reflog => To find commit sha of deleted 
+1. **Analyze the Output**:
+The output will display a list of actions with corresponding commit SHAs and messages. Each entry will look something like this:
+    
+    ```sql
+    Copy
+    abc1234 HEAD@{0}: commit: Your last commit message
+    def5678 HEAD@{1}: checkout: moving from feature-branch to main
+    ghi9012 HEAD@{2}: commit: Another commit message
+    ```
+    
+    - The **SHA** (e.g., `abc1234`) is what you will use to recover the branch.
+    - The **message** gives context about what action was taken, which can help you identify the correct commit.
+
+## step2: git checkout -b <new-branch> <commit-SHA> => Create a New Branch at the Commit
+
+## step3: git push origin <new-branch> => push the new branch to remote.
+
 ---
 
 ## Interview Answer
